@@ -8,10 +8,10 @@ After checking out the code using git you can run:
    pip install . dnslib jinja2 starlette wsproto
 
 
-QUIC Client
+Simple Customized QUIC Client
 .............
 
-I have developed quic_client.py, a custom QUIC client. This client establishes a QUIC connection to a server and sends data over streams.
+I (Jonas Krause) have developed quic_client.py, a custom QUIC client. This client establishes a QUIC connection to a server and sends data over streams.
 
 To run the quic_client.py, execute:
 
