@@ -19,26 +19,26 @@ class CustomQuicClient(QuicConnectionProtocol):
         if isinstance(event, HandshakeCompleted):
             print("Handshake completed, sending data")
             
-            # 4. Set a new stream id to 2024, instead of "Issue a new connectionID of 2024"
+            # Set a new stream id to 2024
             stream_id_1 = 2024
             stream_id_2 = 2026
 
-            # 5. Create two new streams and send the payload ”NPA” and "QUIC"
+            # Create two new streams and send the payload ”NPA” and "QUIC"
             self._quic.send_stream_data(stream_id_1, b'NPA', end_stream=True)
             print(f"Sent 'NPA' on stream {stream_id_1}")
             self._quic.send_stream_data(stream_id_2, b'QUIC', end_stream=True)
             print(f"Sent 'QUIC' on stream {stream_id_2}")
             
-            # 7. Close the connection
+            # Close the connection
             self._quic.close()
             print("Connection closed")
         elif isinstance(event, ConnectionTerminated):
             print("Connection terminated")
 
-# Main coroutine to run the QUIC clien
+# Main coroutine to run the QUIC client
 async def run(host, port, configuration):
 
-    # 1. Establish a QUIC connection to a server
+    # Establish a QUIC connection to a server
     async with connect(host, port, configuration=configuration, create_protocol=CustomQuicClient):
         await asyncio.Future()
 
@@ -55,10 +55,10 @@ if __name__ == "__main__":
     # Sets HTTP/3 as the protocol for the QUIC connection.
     configuration.alpn_protocols = H3_ALPN
 
-    # 2. Set the idle_timeout to 5 seconds instead of MAX ACK DELAY to 5 seconds
+    # Set the idle_timeout to 5 seconds
     configuration.idle_timeout = 5 
 
-    # 3. Set the maximum stream data to 2024 instead of "Set the maximum number of parallel streams to 2024."
+    # Set the maximum stream data to 2024
     configuration.max_stream_data = 2024
 
     # Deactivates the certificate check for development purposes.
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     
 
 # QLOG-Konfiguration
-# 6. Log the connection in QLOG
+# Log the connection in QLOG
 current_directory = os.getcwd()
 qlog_directory = os.path.join(current_directory, "logs")
 os.makedirs(qlog_directory, exist_ok=True)
