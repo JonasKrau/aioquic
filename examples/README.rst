@@ -27,6 +27,7 @@ The quic_client.py includes the following customizations:
 - Connection Closing: Automatically closes the connection after sending data.
 
 QUIC Configuration:
+
 - Sets HTTP/3 as the protocol for the QUIC connection.
 - Configures idle timeout to 5 seconds.
 - Sets the maximum stream data to 2024 bytes.
