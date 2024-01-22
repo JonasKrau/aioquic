@@ -8,6 +8,31 @@ After checking out the code using git you can run:
    pip install . dnslib jinja2 starlette wsproto
 
 
+QUIC Client
+.............
+
+I have developed quic_client.py, a custom QUIC client. This client establishes a QUIC connection to a server and sends data over streams.
+
+To run the quic_client.py, execute:
+
+.. code-block:: console
+
+  python quic_client.py
+
+The quic_client.py includes the following customizations:
+
+- Custom QUIC Client Class: Extends QuicConnectionProtocol to handle specific QUIC events.
+- Stream ID Assignment: Sets new stream IDs to 2024 and 2026.
+- Data Sending on Streams: Sends the payloads "NPA" and "QUIC" on the two different streams.
+- Connection Closing: Automatically closes the connection after sending data.
+
+QUIC Configuration:
+- Sets HTTP/3 as the protocol for the QUIC connection.
+- Configures idle timeout to 5 seconds.
+- Sets the maximum stream data to 2024 bytes.
+- Disables certificate verification for development purposes.
+- QLOG Logging: Logs the connection details in QLOG format in the /logs directory.
+
 HTTP/3
 ------
 
